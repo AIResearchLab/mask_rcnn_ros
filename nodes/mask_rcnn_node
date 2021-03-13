@@ -1,10 +1,19 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3.6
 import os
 import threading
-from Queue import Queue
+import queue
 import numpy as np
 
-import cv2
+#We do this for the local files involved in this package and python configuration
+import sys
+sys.path.append('/home/baxter/catkin_ws/src/mask_rcnn_ros/src/mask_rcnn_ros')
+
+
+#Import the cv2 library for python3.6
+import importlib.util
+cv2_path = importlib.util.spec_from_file_location("cv2", "/usr/local/lib/python3.6/dist-packages/cv2/cv2.cpython-36m-x86_64-linux-gnu.so")
+cv2 = importlib.util.module_from_spec(cv2_path)
+
 from cv_bridge import CvBridge
 import rospy
 from sensor_msgs.msg import Image
